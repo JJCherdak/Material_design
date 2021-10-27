@@ -13,4 +13,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="FunnyTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">#FF4800</item>
+        <item name="colorPrimaryVariant">#BA12D6</item>
+        <item name="colorOnPrimary">#FFE53B</item>
+        <item name="android:colorBackground">#FFE53B</item>
+
+
+    </style>
 </resources>

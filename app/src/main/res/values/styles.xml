@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="InputLayoutStyle" parent= "Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:textSize">@dimen/inputLayoutTextSize</item>
+        <item name="android:textColor">@color/inputLayoutColorText</item>
+        <item name="android:colorBackground">@color/inputLayoutColorBackground</item>
+    </style>
+</resources>

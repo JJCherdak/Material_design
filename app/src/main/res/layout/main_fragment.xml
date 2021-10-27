@@ -13,7 +13,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/InputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/search_wiki"
@@ -29,6 +29,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_edit_text"
+                style="@style/InputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
