@@ -10,4 +10,6 @@
     <color name="color_gray">#66000000</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorPrimary">#008577</color>
+    <color name="inputLayoutColorBackground">#D8CE7A</color>
+    <color name="inputLayoutColorText">#D200F6</color>
 </resources>
