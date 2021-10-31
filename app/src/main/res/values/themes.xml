@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="FunnyTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="FunnyTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">#FF4800</item>
         <item name="colorPrimaryVariant">#BA12D6</item>
         <item name="colorOnPrimary">#FFE53B</item>
