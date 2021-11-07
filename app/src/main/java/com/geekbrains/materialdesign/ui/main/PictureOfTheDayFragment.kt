@@ -26,8 +26,8 @@ class PictureOfTheDayFragment : Fragment() {
         ViewModelProviders.of(this).get(PictureOfTheDayViewModel::class.java)
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         viewModel.getData()
             .observe(this@PictureOfTheDayFragment, Observer<PictureOfTheDayData> { renderData(it) })
     }
