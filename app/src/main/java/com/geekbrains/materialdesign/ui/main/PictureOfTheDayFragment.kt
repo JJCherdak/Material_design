@@ -15,6 +15,7 @@ import com.geekbrains.materialdesign.MainActivity
 import com.geekbrains.materialdesign.R
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.geekbrains.materialdesign.ui.main.SettingsFragment
 import kotlinx.android.synthetic.main.main_fragment.*
 import com.geekbrains.materialdesign.ui.main.ChipsFragment
 
@@ -56,13 +57,15 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> toast("Favourite")
-            R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.add(R.id.container, ChipsFragment())?.addToBackStack(null)?.commit()
+            R.id.app_bar_fav -> activity?.let { startActivity(Intent(it, ApiBottomActivity::class.java)) }
+            R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()
+                ?.add(R.id.container, SettingsFragment())?.addToBackStack(null)?.commit()
             android.R.id.home -> {
                 activity?.let {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
                 }
             }
+            R.id.app_bar_api -> activity?.let { startActivity(Intent(it, ApiActivity::class.java)) }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -79,7 +82,7 @@ class PictureOfTheDayFragment : Fragment() {
                     //showSuccess()
                     image_view.load(url) {
                         lifecycle(this@PictureOfTheDayFragment)
-                        error(R.drawable.ic_load_error_vector)
+                        kotlin.error(R.drawable.ic_load_error_vector)
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
                 }
