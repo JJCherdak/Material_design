@@ -82,7 +82,7 @@ class PictureOfTheDayFragment : Fragment() {
                     //showSuccess()
                     image_view.load(url) {
                         lifecycle(this@PictureOfTheDayFragment)
-                        kotlin.error(R.drawable.ic_load_error_vector)
+//                        kotlin.error(R.drawable.ic_load_error_vector)
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
                 }
