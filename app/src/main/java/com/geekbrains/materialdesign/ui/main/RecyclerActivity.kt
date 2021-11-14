@@ -18,7 +18,7 @@ import geekbarains.material.ui.recycler.Change
 import geekbarains.material.ui.recycler.createCombinedPayload
 import kotlinx.android.synthetic.main.activity_recycler.*
 import kotlinx.android.synthetic.main.activity_recycler_item_earth.view.*
-import kotlinx.android.synthetic.main.activity_recycler_item_mars.view.*
+import kotlinx.android.synthetic.main.activity_recycler_item_note.view.*
 import kotlin.math.abs
 
 class RecyclerActivity : AppCompatActivity() {
@@ -67,21 +67,21 @@ class RecyclerActivity : AppCompatActivity() {
         return when (instanceNumber) {
             false -> listOf(
                 Pair(Data(0, "Header"), false),
-                Pair(Data(1, "Mars", ""), false),
-                Pair(Data(2, "Mars", ""), false),
-                Pair(Data(3, "Mars", ""), false),
-                Pair(Data(4, "Mars", ""), false),
-                Pair(Data(5, "Mars", ""), false),
-                Pair(Data(6, "Mars", ""), false)
+                Pair(Data(1, "NOTE", ""), false),
+                Pair(Data(2, "NOTE", ""), false),
+                Pair(Data(3, "NOTE", ""), false),
+                Pair(Data(4, "NOTE", ""), false),
+                Pair(Data(5, "NOTE", ""), false),
+                Pair(Data(6, "NOTE", ""), false)
             )
             true -> listOf(
                 Pair(Data(0, "Header"), false),
-                Pair(Data(1, "Mars", ""), false),
-                Pair(Data(2, "Jupiter", ""), false),
-                Pair(Data(3, "Mars", ""), false),
-                Pair(Data(4, "Neptune", ""), false),
-                Pair(Data(5, "Saturn", ""), false),
-                Pair(Data(6, "Mars", ""), false)
+                Pair(Data(1, "NOTE", ""), false),
+                Pair(Data(2, "SHOPPING LIST", ""), false),
+                Pair(Data(3, "MEETINGS", ""), false),
+                Pair(Data(4, "SPENDING LIST", ""), false),
+                Pair(Data(5, "NOTE", ""), false),
+                Pair(Data(6, "PLANS", ""), false)
             )
         }
     }
@@ -102,7 +102,7 @@ class RecyclerActivityAdapter(
             )
             TYPE_MARS ->
                 MarsViewHolder(
-                    inflater.inflate(R.layout.activity_recycler_item_mars, parent, false) as View
+                    inflater.inflate(R.layout.activity_recycler_item_note, parent, false) as View
                 )
             else -> HeaderViewHolder(
                 inflater.inflate(R.layout.activity_recycler_item_header, parent, false) as View
@@ -214,7 +214,7 @@ class RecyclerActivityAdapter(
     inner class MarsViewHolder(view: View) : BaseViewHolder(view), ItemTouchHelperViewHolder {
 
         override fun bind(dataItem: Pair<Data, Boolean>) {
-            itemView.marsImageView.setOnClickListener { onListItemClickListener.onItemClick(dataItem.first) }
+            itemView.noteImageView.setOnClickListener { onListItemClickListener.onItemClick(dataItem.first) }
             itemView.addItemImageView.setOnClickListener { addItem() }
             itemView.removeItemImageView.setOnClickListener { removeItem() }
             itemView.moveItemDown.setOnClickListener { moveDown() }
