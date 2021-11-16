@@ -4,6 +4,9 @@ import com.geekbrains.materialdesign.R
 import android.graphics.Canvas
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -76,7 +79,7 @@ class RecyclerActivity : AppCompatActivity() {
             )
             true -> listOf(
                 Pair(Data(0, "Header"), false),
-                Pair(Data(1, "NOTE", ""), false),
+                Pair(Data(1, "NOTE", "Завтра встреча в 16:00"), false),
                 Pair(Data(2, "SHOPPING LIST", ""), false),
                 Pair(Data(3, "MEETINGS", ""), false),
                 Pair(Data(4, "SPENDING LIST", ""), false),

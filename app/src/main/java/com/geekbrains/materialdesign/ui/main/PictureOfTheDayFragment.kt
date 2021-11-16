@@ -1,8 +1,12 @@
 package com.geekbrains.materialdesign.ui.main
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.*
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +22,13 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.geekbrains.materialdesign.ui.main.SettingsFragment
 import kotlinx.android.synthetic.main.main_fragment.*
 import com.geekbrains.materialdesign.ui.main.ChipsFragment
+import kotlinx.android.synthetic.main.main_fragment.bottom_app_bar
+import kotlinx.android.synthetic.main.main_fragment.fab
+import kotlinx.android.synthetic.main.main_fragment.image_view
+import kotlinx.android.synthetic.main.main_fragment.input_edit_text
+import kotlinx.android.synthetic.main.main_fragment.input_layout
+import kotlinx.android.synthetic.main.main_fragment_start.*
+import kotlinx.android.synthetic.main.main_fragment.textView as textView1
 
 class PictureOfTheDayFragment : Fragment() {
 
@@ -30,6 +41,7 @@ class PictureOfTheDayFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel.getData()
             .observe(this@PictureOfTheDayFragment, Observer<PictureOfTheDayData> { renderData(it) })
+
     }
 
     override fun onCreateView(
@@ -41,14 +53,22 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        textView.text = "Здесь должно быть описание фото!"
+        usedSpan()
+
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
         input_layout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse("https://en.wikipedia.org/wiki/${input_edit_text.text.toString()}")
             })
         }
+
         setBottomAppBar(view)
+
+
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -135,4 +155,15 @@ class PictureOfTheDayFragment : Fragment() {
         fun newInstance() = PictureOfTheDayFragment()
         private var isMain = true
     }
+
+
+    fun usedSpan() {
+        val spannable = SpannableStringBuilder("Здесь должно быть описание фото!")
+        spannable.setSpan(
+            ForegroundColorSpan(Color.BLUE),
+            9,12,
+            Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+        )
+    }
+
 }
