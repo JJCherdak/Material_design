@@ -1,8 +1,12 @@
 package com.geekbrains.materialdesign.ui.main
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.*
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -15,8 +19,16 @@ import com.geekbrains.materialdesign.MainActivity
 import com.geekbrains.materialdesign.R
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.geekbrains.materialdesign.ui.main.SettingsFragment
 import kotlinx.android.synthetic.main.main_fragment.*
 import com.geekbrains.materialdesign.ui.main.ChipsFragment
+import kotlinx.android.synthetic.main.main_fragment.bottom_app_bar
+import kotlinx.android.synthetic.main.main_fragment.fab
+import kotlinx.android.synthetic.main.main_fragment.image_view
+import kotlinx.android.synthetic.main.main_fragment.input_edit_text
+import kotlinx.android.synthetic.main.main_fragment.input_layout
+import kotlinx.android.synthetic.main.main_fragment_start.*
+import kotlinx.android.synthetic.main.main_fragment.textView as textView1
 
 class PictureOfTheDayFragment : Fragment() {
 
@@ -29,6 +41,7 @@ class PictureOfTheDayFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel.getData()
             .observe(this@PictureOfTheDayFragment, Observer<PictureOfTheDayData> { renderData(it) })
+
     }
 
     override fun onCreateView(
@@ -40,14 +53,22 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        textView.text = "Здесь должно быть описание фото!"
+        usedSpan()
+
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
         input_layout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse("https://en.wikipedia.org/wiki/${input_edit_text.text.toString()}")
             })
         }
+
         setBottomAppBar(view)
+
+
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -56,13 +77,15 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> toast("Favourite")
-            R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.add(R.id.container, ChipsFragment())?.addToBackStack(null)?.commit()
+            R.id.app_bar_fav -> activity?.let { startActivity(Intent(it, ApiBottomActivity::class.java)) }
+            R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()
+                ?.add(R.id.container, SettingsFragment())?.addToBackStack(null)?.commit()
             android.R.id.home -> {
                 activity?.let {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
                 }
             }
+            R.id.app_bar_api -> activity?.let { startActivity(Intent(it, ApiActivity::class.java)) }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -79,7 +102,7 @@ class PictureOfTheDayFragment : Fragment() {
                     //showSuccess()
                     image_view.load(url) {
                         lifecycle(this@PictureOfTheDayFragment)
-                        error(R.drawable.ic_load_error_vector)
+//                        kotlin.error(R.drawable.ic_load_error_vector)
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
                 }
@@ -132,4 +155,15 @@ class PictureOfTheDayFragment : Fragment() {
         fun newInstance() = PictureOfTheDayFragment()
         private var isMain = true
     }
+
+
+    fun usedSpan() {
+        val spannable = SpannableStringBuilder("Здесь должно быть описание фото!")
+        spannable.setSpan(
+            ForegroundColorSpan(Color.BLUE),
+            9,12,
+            Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+        )
+    }
+
 }
