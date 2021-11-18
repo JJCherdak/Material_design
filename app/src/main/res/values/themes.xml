@@ -22,4 +22,14 @@
 
 
     </style>
+
+    <style name="AppTheme.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#FF4800</item>
+        <item name="colorPrimaryVariant">#BA12D6</item>
+        <item name="colorOnPrimary">#FFE53B</item>
+        <item name="android:colorBackground">#FFE53B</item>
+        <item name="android:windowBackground">@drawable/splash_background_drawable</item>
+    </style>
+
+
 </resources>
