@@ -1,12 +1,12 @@
 package com.geekbrains.materialdesign.ui.main
 
-import android.telecom.Call
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.geekbrains.materialdesign.BuildConfig
-import okhttp3.Response
-import javax.security.auth.callback.Callback
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class PictureOfTheDayViewModel(
     private val liveDataForViewToObserve: MutableLiveData<PictureOfTheDayData> = MutableLiveData(),
@@ -26,10 +26,10 @@ class PictureOfTheDayViewModel(
             PictureOfTheDayData.Error(Throwable("You need API key"))
         } else {
             retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey).enqueue(object :
-                retrofit2.Callback<PODServerResponseData> {
+                Callback<PODServerResponseData> {
                 override fun onResponse(
-                    call: retrofit2.Call<PODServerResponseData>,
-                    response: retrofit2.Response<PODServerResponseData>
+                    call: Call<PODServerResponseData>,
+                    response: Response<PODServerResponseData>
                 ) {
                     if (response.isSuccessful && response.body() != null) {
                         liveDataForViewToObserve.value =
@@ -46,7 +46,7 @@ class PictureOfTheDayViewModel(
                     }
                 }
 
-                override fun onFailure(call: retrofit2.Call<PODServerResponseData>, t: Throwable) {
+                override fun onFailure(call: Call<PODServerResponseData>, t: Throwable) {
                     liveDataForViewToObserve.value = PictureOfTheDayData.Error(t)
                 }
             })

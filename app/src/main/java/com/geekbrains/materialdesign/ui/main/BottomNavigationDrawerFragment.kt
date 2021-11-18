@@ -1,5 +1,6 @@
 package com.geekbrains.materialdesign.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,9 +25,32 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
         navigation_view.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.navigation_one -> Toast.makeText(context, "1", Toast.LENGTH_SHORT).show()
-                R.id.navigation_two -> Toast.makeText(context, "2", Toast.LENGTH_SHORT).show()
+                R.id.navigation_one -> activity?.let {
+                    startActivity(
+                        Intent(
+                            it,
+                            AnimationsActivity::class.java
+                        )
+                    )
+                }
+                R.id.navigation_two -> activity?.let {
+                    startActivity(
+                        Intent(
+                            it,
+                            AnimationaActivityBonus::class.java
+                        )
+                    )
+                }
+                R.id.navigation_three -> activity?.let {
+                    startActivity(
+                        Intent(
+                            it,
+                            RecyclerActivity::class.java
+                        )
+                    )
+                }
             }
+            dismiss()
             true
         }
     }

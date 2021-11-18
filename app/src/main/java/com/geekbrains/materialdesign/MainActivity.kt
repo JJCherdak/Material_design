@@ -2,17 +2,17 @@ package com.geekbrains.materialdesign
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.geekbrains.materialdesign.ui.main.MainFragment
 import com.geekbrains.materialdesign.ui.main.PictureOfTheDayFragment
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
+                .replace(R.id.container, PictureOfTheDayFragment.newInstance())
                 .commitNow()
         }
     }
